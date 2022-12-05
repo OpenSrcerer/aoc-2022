@@ -21,10 +21,11 @@ fun main() {
         ?.split("\n")
         ?.map { it.split(" ") }
         ?.forEach { instruction ->
-            println(instruction)
+            val toMove = mutableListOf<Char>()
             IntStream.range(0, instruction[1].toInt()).forEach {
-                stacks[instruction[5].toInt() - 1].add(stacks[instruction[3].toInt() - 1].pop())
+                toMove.add(stacks[instruction[3].toInt() - 1].pop())
             }
+            stacks[instruction[5].toInt() - 1].addAll(toMove.reversed())
         }
 
     // Print Message
